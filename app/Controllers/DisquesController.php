@@ -3,32 +3,31 @@
 namespace App\Controllers;
 
 
-use App\Models\Carre;
+use App\Models\Disque;
 use Leaf\Http\Request;
 
-class CarresController
+class DisquesController
 {
-    private $carre;
+    private $disque;
 
     public function __construct()
     {
 
-        $this->request = new Request;
-        if (!$len = Request::get('len')) {
-            sendError("Paramètre len requis");
+        if (!$radius = Request::get("r")) {
+            sendError("Paramètre r requis");
         }
-        $this->carre = new Carre($len);
+        $this->disque = new Disque($radius);
     }
 
     /**
      * area
-     * Route: /carre/area?len=X
+     * Route: /disque/area?r=X
      * @return void
      */
     public function area()
     {
 
-        $area = $this->carre->calcArea();
+        $area = $this->disque->calcArea();
         response()->json([
             "area" => $area
         ]);
@@ -36,13 +35,13 @@ class CarresController
 
     /**
      * perimeter
-     * Route: /carre/perimeter?len=X
+     * Route: /disque/perimeter?r=X
      * @return void
      */
     public function perimeter()
     {
 
-        $perimeter = $this->carre->calcPerimeter();
+        $perimeter = $this->disque->calcPerimeter();
         response()->json([
             "perimeter" => $perimeter
         ]);

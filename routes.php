@@ -17,5 +17,10 @@ $app->get('/rectangle/perimeter', 'RectanglesController@perimeter');
 $app->get('/triangle/area', 'TrianglesController@area');
 $app->get('/triangle/perimeter', 'TrianglesController@perimeter');
 
+$app->get('/disque/area', 'DisquesController@area');
+$app->get('/disque/perimeter', 'DisquesController@perimeter');
+
+$app->get('/couronne/area', 'CouronnesController@area');
+$app->get('/couronne/perimeter', 'CouronnesController@perimeter');
 
 $app->run();

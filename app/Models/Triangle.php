@@ -2,53 +2,98 @@
 
 namespace App\Models;
 
+
 use App\Abstracts\Forme;
 
-/**
- *              A
- *             /\
- *            /  \
- *           /____\
- *          B      C
- */
+//
+//             A
+//            /\
+//           /  \
+//          /____\
+//         B      C
 
 class Triangle extends Forme
 {
-    public function __construct($lenAb, $lenAc, $lenBc)
-    {
-        $this->ab = $lenAb;
-        $this->ac = $lenAc;
-        $this->bc = $lenBc;
-    }
 
-    /**
-     * get_aire
-     * 
-     * Pour calculer l'aire d'un triangle quelconque uniquement à partir de la longueur de ses côtés,
-     * nous pouvons utiliser la formule de Héron
-     * 
-     * @return float
-     */
-    public function set_aire()
-    {
-        // Pour utiliser la formule de Héron, nous avons besoin de connaître le périmetre du triangle
-        $this->set_perimetre();
-        // Héron
-        $p = $this->perimetre / 2.0;
-        $pa = $p * ($p - $this->ab) * ($p - $this->bc) * ($p - $this->ac);
-        $this->aire = sqrt($pa);
-    }
+      /**
+       * __construct
+       *
+       * @param  float $lenAb Longeur côté AB
+       * @param  float $lenAc Longeur côté AC
+       * @param  float $lenBc Longeur côté BC
+       * @return void
+       */
+      public function __construct(float $lenAb, float $lenAc, float $lenBc)
+      {
 
+            $this->setAb($lenAb);
+            $this->setAc($lenAc);
+            $this->setBc($lenBc);
+      }
 
-    /**
-     * get_perimetre
-     *
-     * Le périmètre d'un triangle représente l'addition de la longueur de chacun des côtés
-     * 
-     * @return void
-     */
-    public function set_perimetre(): void
-    {
-        $this->perimetre = $this->ab + $this->bc + $this->ac;
-    }
+      /**
+       * setAb
+       *
+       * @param  float $len Longeur du côté
+       * @return void
+       */
+      private function setAb(float $len)
+      {
+
+            $this->ab = $len;
+      }
+
+      /**
+       * setAc
+       * 
+       * @param  float $len Longeur du côté
+       * @return void
+       */
+      private function setAc(float $len)
+      {
+
+            $this->ac = $len;
+      }
+
+      /**
+       * setBc
+       *
+       * @param  float $len Longeur du côté
+       * @return void
+       */
+      private function setBc(float $len)
+      {
+
+            $this->bc = $len;
+      }
+
+      public function calcArea(): float
+      {
+
+            /** 
+             * Pour calculer l'area d'un triangle quelconque uniquement à partir de 
+             * la longueur de ses côtés, nous pouvons utiliser la formule de Héron
+             */
+            $perimeter = $this->calcPerimeter();
+            // Héron
+            $p = $perimeter / 2.0;
+            $pa = $p * ($p - $this->ab) * ($p - $this->bc) * ($p - $this->ac);
+            $area = sqrt($pa);
+            $this->setArea($area);
+
+            return $area;
+      }
+
+      public function calcPerimeter(): float
+      {
+
+            /**
+             * Le périmètre d'un triangle représente l'addition de la
+             * longueur de chacun des côtés
+             */
+            $perimeter = $this->ab + $this->bc + $this->ac;
+            $this->setPerimeter($perimeter);
+
+            return $perimeter;
+      }
 }

@@ -6,7 +6,7 @@ use App\Models\TriangleRectangle;
 
 
 /**
- * instanciate_triangle
+ * instanciateTriangle
  *
  * Détecte le type de triangle selon les données passées et retourne un objet
  * correspondant
@@ -16,11 +16,11 @@ use App\Models\TriangleRectangle;
  * @param  float $side3
  * @return Triangle|TriangleIsocele|TriangleRectangle
  */
-function instanciate_triangle($side1, $side2, $side3)
+function instanciateTriangle($side1, $side2, $side3)
 {
-    if (is_triangle_rectangle($side1, $side2, $side3)) {
+    if (isTriangleRectangle($side1, $side2, $side3)) {
         return new TriangleRectangle($side1, $side2, $side3);
-    } else if (is_triangle_isocele($side1, $side2, $side3)) {
+    } else if (isTriangleIsocele($side1, $side2, $side3)) {
         return new TriangleIsocele($side1, $side2, $side3);
     } else {
         return new Triangle($side1, $side2, $side3);
@@ -28,7 +28,7 @@ function instanciate_triangle($side1, $side2, $side3)
 }
 
 /**
- * is_triangle_rectangle
+ * isTriangleRectangle
  *
  * Détermine si le triangle possède un angle droit
  * 
@@ -37,7 +37,7 @@ function instanciate_triangle($side1, $side2, $side3)
  * @param  float $side3
  * @return bool
  */
-function is_triangle_rectangle($side1, $side2, $side3): bool
+function isTriangleRectangle($side1, $side2, $side3): bool
 {
     $sides = [$side1, $side2, $side3];
     rsort($sides);
@@ -49,7 +49,7 @@ function is_triangle_rectangle($side1, $side2, $side3): bool
 }
 
 /**
- * is_triangle_isocele
+ * isTriangleIsocele
  *
  * Détermine si un triangle est isocele (deux côté égaux)
  * 
@@ -58,7 +58,7 @@ function is_triangle_rectangle($side1, $side2, $side3): bool
  * @param  float $side3
  * @return bool
  */
-function is_triangle_isocele($side1, $side2, $side3): bool
+function isTriangleIsocele($side1, $side2, $side3): bool
 {
     $sides = [$side1, $side2, $side3];
     // On ordonne les tailles de côtés.
@@ -73,4 +73,12 @@ function is_triangle_isocele($side1, $side2, $side3): bool
     }
 
     return false;
+}
+
+function sendError(string $message, int $error = 422)
+{
+    response()->json([
+        "message" => $message
+    ], $error);
+    die;
 }

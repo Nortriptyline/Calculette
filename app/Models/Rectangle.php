@@ -6,32 +6,56 @@ use App\Abstracts\Forme;
 
 class Rectangle extends Forme
 {
-
-    private $width;
-    private $height;
-
-    public function __construct($width, $height)
+    protected float $width; // Largeur
+    protected float $height; // Hauteur
+    
+    /**
+     * __construct
+     *
+     * @param  float $width
+     * @param  float $height
+     * @return void
+     */
+    public function __construct(float $width, float $height)
     {
-        $this->set_width($width);
-        $this->set_height($height);
+        $this->setWidth($width);
+        $this->setHeight($height);
     }
 
-    private function set_width($width)
+    public function calcArea(): float
+    {
+        $area = $this->width * $this->height;
+        $this->setArea($area);
+
+        return $area;
+    }
+
+    public function calcPerimeter(): float
+    {
+        $perimeter = ($this->width + $this->height) * 2;
+        $this->setPerimeter($perimeter);
+
+        return $perimeter;
+    }
+
+    /**
+     * setWidth
+     *
+     * @param  float $width
+     * @return void
+     */
+    private function setWidth(float $width)
     {
         $this->width = $width;
     }
-    private function set_height($height)
+    /**
+     * setHeight
+     *
+     * @param  float $height
+     * @return void
+     */
+    private function setHeight(float $height)
     {
         $this->height = $height;
-    }
-
-    public function set_aire()
-    {
-        $this->aire = $this->width * $this->height;
-    }
-
-    public function set_perimetre()
-    {
-        $this->perimetre = ($this->width + $this->height) * 2;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+
 use Leaf\Http\Request;
 
 class TrianglesController
@@ -10,25 +11,43 @@ class TrianglesController
 
     public function __construct()
     {
+
         $a = Request::get("A");
         $b = Request::get("B");
         $c = Request::get("C");
-        $this->triangle = instanciate_triangle($a, $b, $c);
+
+        if (!$a || !$b || !$c) {
+            sendError("Parametre a, b, c requis");
+        }
+
+        $this->triangle = instanciateTriangle($a, $b, $c);
     }
 
+    /**
+     * area
+     * Route: /triangle/area?A=X&B=Y&C=Z
+     * @return void
+     */
     public function area()
     {
-        $this->triangle->set_aire();
+
+        $area = $this->triangle->calcArea();
         response()->json([
-            "area" => $this->triangle->aire
+            "area" => $area
         ]);
     }
 
+    /**
+     * perimeter
+     * Route: /triangle/perimeter?A=X&B=Y&C=Z
+     * @return void
+     */
     public function perimeter()
     {
-        $this->triangle->set_perimetre();
+
+        $perimeter = $this->triangle->calcPerimeter();
         response()->json([
-            "perimeter" => $this->triangle->perimetre
+            "perimeter" => $perimeter
         ]);
     }
 }
