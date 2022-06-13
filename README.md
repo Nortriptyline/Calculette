@@ -15,7 +15,7 @@
 
 ```bash
 # Clonage du repo
-git clone git@github.com:Nortriptyline/Calculette.git
+git clone https://github.com/Nortriptyline/Calculette.git
 # Installation des dépendances
 composer install 
 # Démarrage du serveur PHP sur le port 8080 et ayant le dossier public comme racine
