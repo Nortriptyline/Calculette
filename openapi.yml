@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: Calculette
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Carre
+  - name: Rectangle
+  - name: Triangle
+  - name: Disque
+  - name: Couronne
+paths:
+  /carre/area:
+    get:
+      tags:
+        - Carre
+      summary: Calcule l'aire d'un carré
+      parameters:
+        - name: "len"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur d'un côté
+          example: "5"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "area": 25 }
+  /carre/perimeter:
+    get:
+      tags:
+        - Carre
+      summary: Calcule le périmetre d'un carré
+      parameters:
+        - name: "len"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur d'un côté
+          example: "5"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Perimeter"
+              example: { "perimeter": 20 }
+
+  /rectangle/area:
+    get:
+      tags:
+        - Rectangle
+      summary: Calcule l'aire d'un Rectangle
+      parameters:
+        - name: "width"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur de la largeur
+          example: 4
+        - name: "height"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur de la hauteur
+          example: 6
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "area": 24 }
+  /rectangle/perimeter:
+    get:
+      tags:
+        - Rectangle
+      summary: Calcule le périmetre d'un Rectangle
+      parameters:
+        - name: "width"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur de la largeur
+          example: "5"
+        - name: "height"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur de la hauteur
+          example: "5"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Perimeter"
+              example: { "perimeter": 20 }
+
+  /triangle/area:
+    get:
+      tags:
+        - Triangle
+      summary: Calcule l'aire d'un Triangle
+      parameters:
+        - name: "A"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du premier côté
+          example: 3
+        - name: "B"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du second côté
+          example: 4
+        - name: "C"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du troisième côté
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "area": 6 }
+  /triangle/perimeter:
+    get:
+      tags:
+        - Triangle
+      summary: Calcule le périmetre d'un Triangle
+      parameters:
+        - name: "A"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du premier côté
+          example: 3
+        - name: "B"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du second côté
+          example: 4
+        - name: "C"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Longueur du troisième côté
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Perimeter"
+              example: { "perimeter": 12 }
+
+  /disque/area:
+    get:
+      tags:
+        - Disque
+      summary: Calcule l'aire d'un Disque
+      parameters:
+        - name: "r"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon du disque
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "area": 78.53981633974483 }
+  /disque/perimeter:
+    get:
+      tags:
+        - Disque
+      summary: Calcule le périmetre d'un Disque
+      parameters:
+        - name: "r"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon du disque
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Perimeter"
+              example: { "perimeter": 31.41592653589793 }
+
+  /couronne/area:
+    get:
+      tags:
+        - Couronne
+      summary: Calcule l'aire d'une Couronne
+      parameters:
+        - name: "re"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon de la Couronne extérieur
+          example: 10
+        - name: "ri"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon de la Couronne intérieur
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "area": 235.61944901923448 }
+  /couronne/perimeter:
+    get:
+      tags:
+        - Couronne
+      summary: Calcule le périmetre d'une Couronne
+      parameters:
+        - name: "re"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon du Couronne extérieur
+          example: 10
+        - name: "ri"
+          in: "query"
+          schema:
+            type: number
+          required: true
+          description: Rayon du Couronne intérieur
+          example: 5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Area"
+              example: { "perimeter": 94.24777960769379 }
+
+components:
+  schemas:
+    Area:
+      type: object
+      properties:
+        area:
+          type: integer
+    Perimeter:
+      type: object
+      properties:
+        perimeter:
+          type: integer
